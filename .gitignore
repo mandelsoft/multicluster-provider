@@ -3,6 +3,7 @@
 /vendor/
 /.kcp.e2e/
 /.e2e/
+/.idea/
 .cover
 *.kubeconfig
 *.pem

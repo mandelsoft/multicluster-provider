@@ -152,10 +152,11 @@ func (f *Factory) update(ctx context.Context, aware multicluster.Aware, obj clie
 			continue
 		}
 
-		if err := prov.Start(ctx, aware); err != nil {
-			f.Log.Error(err, "failed to start provider")
-			continue
-		}
+		go func() {
+			if err := prov.Start(ctx, aware); err != nil {
+				f.Log.Error(err, "failed to start provider")
+			}
+		}()
 
 		f.Providers[id] = prov
 		current[id] = true
